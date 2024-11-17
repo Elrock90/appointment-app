@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Запись клиентов</h1>
+        <form action="{{ url_for('add_appointment') }}" method="post">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="date">Дата:</label>
+            <input type="date" id="date" name="date" required><br><br>
+            <label for="time">Время:</label>
+            <input type="time" id="time" name="time" required><br><br>
+            <input type="submit" value="Записаться">
+        </form>
+
+        <h2>Список записей:</h2>
+        <ul>
+            {% for appointment in appointments %}
+                <li>{{ appointment.name }} - {{ appointment.date }} {{ appointment.time }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
